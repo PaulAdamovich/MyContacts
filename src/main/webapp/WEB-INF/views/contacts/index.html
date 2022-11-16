@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html, body{width:100%; height:100%; margin:0}
+        #action_form{
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: 52%;
+            top: 50%;
+            margin-left: -235px;
+            margin-top: -350px;
+        }
+        #submit{
+            margin-left: +73px;
+            margin-top: -30px;
+        }
+        A:link {text-decoration: none;}
+        A {font-size: 20px; color: white;}
+        A:visited { text-decoration: none; }
+        A:active { text-decoration: none; }
+        A:hover {
+            text-decoration: none; /* Делает ссылку подчеркнутой при наведении на нее курсора */
+            color: #B6452C; /* Цвет ссылки */
+        }
+        form{padding:60px}
+        body {
+            background-color: #0A3542;
+            color: #FFF;
+        }
+    </style>
+    <title>List Contacts</title>
+</head>
+<body>
+<div id="action_form">
+    <h1 align="center">Your list contacts</h1>
+<div align="center">
+    <div th:each="person : ${listPerson}">
+        <a th:href="@{/contacts/{id}(id=${person.getId()})}"
+                th:text="${person.getFirstName() + '  ' +  person.getLastName()}">user</a>
+       </div>
+      </div>
+    <div id="submit">
+        <form th:method="GET" th:action="@{/contacts/new}">
+            <input type="submit" value="Create new contact">
+        </form>
+    </div>
+    </div>
+</div>
+</body>
+</html>

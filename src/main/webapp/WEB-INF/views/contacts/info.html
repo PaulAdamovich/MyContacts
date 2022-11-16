@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        html, body{width:100%; height:100%; margin:0}
+        #action_form{
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            left: 52%;
+            top: 50%;
+            margin-left: -218px;
+            margin-top: -350px;
+        }
+        #submit{
+            margin-top: +25px;
+            margin-left: +10px;
+        }
+        A {font-size: 17px; color: sandybrown;}
+        form{padding:60px}
+        body {
+            background-color: #0A3542;
+            color: #FFF;
+        }
+    </style>
+    <title>Contact info</title>
+</head>
+<body>
+ <div align="center" id="action_form">
+     <h1>Contact Info</h1>
+     <hr>
+     First Name: <a th:text="${person.getFirstName()}">VALUE</a>
+     <br/>
+     <br/>
+     Last Name: <a th:text="${person.getLastName()}">VALUE</a>
+     <br/>
+     <br/>
+     City: <a th:text="${person.getCity()}">VALUE</a>
+     <br/>
+     <br/>
+     Age: <a th:text="${person.getAge()}">VALUE</a>
+     <br/>
+     <br/>
+     Mobile Number: <a th:text="${person.getMobileNumber()}">VALUE</a>
+     <br/>
+     <br/>
+     Email: <a th:text="${person.getEmail()}">VALUE</a>
+     <div id="submit">
+         <input form="edit" th:type="submit" value="Edit"/>
+         <input form="returnToList" th:type="submit" value="Return to list"/>
+         <input form="delete" th:type="submit" value="Delete"/>
+         <form id="returnToList" th:method="GET" th:action="@{/contacts}">
+         </form>
+         <form id="edit" th:method="GET" th:action="@{/contacts/{id}/edit(id=${person.getId()})}">
+         </form>
+         <form id="delete" th:method="DELETE" th:action="@{/contacts/{id}(id=${person.getId()})}">
+         </form>
+     </div>
+ </div>
+</body>
+</html>
